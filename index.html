@@ -3,49 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>클립보드 복사 버튼</title>
+    <title>클립보드 복사</title>
     <script>
-        function copyToClipboard(dataIndex) {
-            // 버튼별로 복사할 데이터 설정
+        window.onload = function () {
+            // URL에서 파라미터 값 가져오기
+            const urlParams = new URLSearchParams(window.location.search);
+            const buttonIndex = urlParams.get('button'); // 예: ?button=1
+
+            // 버튼 인덱스에 따라 복사할 텍스트 정의
             const dataList = [
-                "데이터 1입니다!",
-                "데이터 2입니다!",
-                "데이터 3입니다!",
-                "데이터 4입니다!",
-                "데이터 5입니다!",
-                "데이터 6입니다!",
-                "데이터 7입니다!",
-                "데이터 8입니다!",
-                "데이터 9입니다!",
-                "데이터 10입니다!",
-                "데이터 11입니다!",
-                "데이터 12입니다!"
+                "복사할 텍스트 1", // 버튼 1
+                "복사할 텍스트 2", // 버튼 2
+                "복사할 텍스트 3", // 버튼 3
+                "복사할 텍스트 4", // 버튼 4
+                "복사할 텍스트 5", // 버튼 5
+                "복사할 텍스트 6", // 버튼 6
+                "복사할 텍스트 7", // 버튼 7
+                "복사할 텍스트 8", // 버튼 8
+                "복사할 텍스트 9", // 버튼 9
+                "복사할 텍스트 10", // 버튼 10
+                "복사할 텍스트 11", // 버튼 11
+                "복사할 텍스트 12", // 버튼 12
             ];
-            const textToCopy = dataList[dataIndex]; // 선택된 데이터
-            navigator.clipboard.writeText(textToCopy)
-                .then(() => {
-                    alert(`"${textToCopy}"가 클립보드에 복사되었습니다!`);
-                })
-                .catch(err => {
-                    console.error("복사 실패: ", err);
-                });
-        }
+
+            // 파라미터 값에 해당하는 텍스트 복사
+            if (buttonIndex && dataList[buttonIndex - 1]) {
+                const textToCopy = dataList[buttonIndex - 1];
+                navigator.clipboard.writeText(textToCopy)
+                    .then(() => {
+                        alert(`"${textToCopy}"가 클립보드에 복사되었습니다!`);
+                    })
+                    .catch(err => {
+                        console.error("복사 실패: ", err);
+                    });
+            } else {
+                alert("올바르지 않은 버튼 요청입니다!");
+            }
+        };
     </script>
 </head>
 <body>
-    <h1>클립보드 복사 버튼</h1>
-    <!-- 12개의 버튼 생성 -->
-    <button onclick="copyToClipboard(0)">버튼 1</button>
-    <button onclick="copyToClipboard(1)">버튼 2</button>
-    <button onclick="copyToClipboard(2)">버튼 3</button>
-    <button onclick="copyToClipboard(3)">버튼 4</button>
-    <button onclick="copyToClipboard(4)">버튼 5</button>
-    <button onclick="copyToClipboard(5)">버튼 6</button>
-    <button onclick="copyToClipboard(6)">버튼 7</button>
-    <button onclick="copyToClipboard(7)">버튼 8</button>
-    <button onclick="copyToClipboard(8)">버튼 9</button>
-    <button onclick="copyToClipboard(9)">버튼 10</button>
-    <button onclick="copyToClipboard(10)">버튼 11</button>
-    <button onclick="copyToClipboard(11)">버튼 12</button>
+    <h1>클립보드 복사 중...</h1>
+    <p>잠시만 기다려 주세요.</p>
 </body>
 </html>
